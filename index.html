@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Многофункциональная веб-страница</title>
+</head>
+<body>
+
+    <!-- Задание 1: Проверка возраста для доступа -->
+    <h2>Проверка возраста для доступа</h2>
+    <input type="number" id="age" placeholder="Ваш возраст">
+    <button onclick="checkAge()">Проверить доступ</button>
+    <p id="ageResult"></p>
+
+    <hr>
+
+    <!-- Задание 2: Генерация таблицы умножения -->
+    <h2>Таблица умножения</h2>
+    <input type="number" id="number" placeholder="Введите число">
+    <button onclick="generateTable()">Создать таблицу</button>
+    <ul id="multiplicationTable"></ul>
+
+    <hr>
+
+    <!-- Задание 3: Калькулятор -->
+    <h2>Простой калькулятор</h2>
+    <input type="number" id="num1" placeholder="Число 1">
+    <input type="number" id="num2" placeholder="Число 2">
+    <select id="operation">
+        <option value="sum">Сумма</option>
+        <option value="subtract">Разность</option>
+        <option value="multiply">Произведение</option>
+        <option value="divide">Деление</option>
+    </select>
+    <button onclick="calculate()">Выполнить операцию</button>
+    <p id="calcResult"></p>
+
+    <hr>
+
+    <!-- Задание 4: Список товаров -->
+    <h2>Список товаров</h2>
+    <ul id="productList"></ul>
+
+    <script>
+        // Задание 1: Проверка возраста
+        function checkAge() {
+            const age = document.getElementById('age').value;
+            const result = document.getElementById('ageResult');
+            if (age >= 18) {
+                result.textContent = 'Доступ разрешен';
+            } else {
+                result.textContent = 'Доступ запрещен';
+            }
+        }
+
+        // Задание 2: Генерация таблицы умножения
+        function generateTable() {
+            const num = document.getElementById('number').value;
+            const table = document.getElementById('multiplicationTable');
+            table.innerHTML = ''; // Очищаем старую таблицу
+            for (let i = 1; i <= 10; i++) {
+                const result = num * i;
+                const listItem = document.createElement('li');
+                listItem.textContent = `${num} x ${i} = ${result}`;
+                table.appendChild(listItem);
+            }
+        }
+
+        // Задание 3: Калькулятор
+        function calculate() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const operation = document.getElementById('operation').value;
+            let result;
+            switch (operation) {
+                case 'sum':
+                    result = num1 + num2;
+                    break;
+                case 'subtract':
+                    result = num1 - num2;
+                    break;
+                case 'multiply':
+                    result = num1 * num2;
+                    break;
+                case 'divide':
+                    result = num1 / num2;
+                    break;
+                default:
+                    result = 'Неизвестная операция';
+            }
+            document.getElementById('calcResult').textContent = `Результат: ${result}`;
+        }
+
+        // Задание 4: Список товаров
+        const products = ['Хлеб', 'Молоко', 'Яблоки', 'Сыр', 'Кофе'];
+        const productList = document.getElementById('productList');
+        for (let i = 0; i < products.length; i++) {
+            const listItem = document.createElement('li');
+            listItem.textContent = products[i];
+            productList.appendChild(listItem);
+        }
+    </script>
+
+</body>
+</html>
